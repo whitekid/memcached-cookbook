@@ -63,7 +63,7 @@ when 'rhel', 'fedora', 'suse'
       :max_object_size => node['memcached']['max_object_size'],
       :logfilename     => node['memcached']['logfilename']
     )
-    notifies :restart, 'service[memcached]'
+    notifies :restart, 'service[memcached]', :immediately
   end
 when 'smartos'
   # SMF directly configures memcached with no opportunity to alter settings
@@ -86,6 +86,6 @@ else
       :memory          => node['memcached']['memory'],
       :max_object_size => node['memcached']['max_object_size']
     )
-    notifies :restart, 'service[memcached]'
+    notifies :restart, 'service[memcached]', :immediately
   end
 end
